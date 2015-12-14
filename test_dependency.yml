@@ -1,0 +1,4 @@
+---
+- hosts: test_group
+  roles:
+    - { role: test_role }
