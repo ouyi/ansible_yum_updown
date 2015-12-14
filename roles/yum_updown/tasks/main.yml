@@ -1,0 +1,9 @@
+---
+
+- name: "Downgrade to {{ rpm_name }}"
+  shell: yes | yum downgrade {{ rpm_name }}
+  when: "{{ rollback|default('false') }}"
+
+- name: "Ensure {{ rpm_name }} is installed"
+  yum: name={{ rpm_name }} state=present update_cache=yes disablerepo={{ repos_to_disable }}
+  when: not {{ rollback|default('false') }}
